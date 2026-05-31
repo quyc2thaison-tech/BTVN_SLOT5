@@ -1,0 +1,336 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 6 - Bootstrap Grid Layout</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f5f7fb;
+            color: #2c3e50;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .container-page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px 16px 48px;
+        }
+        .top-nav {
+            background: #ffffff;
+            border: 1px solid #dee2e6;
+            border-radius: 12px;
+            padding: 14px 20px;
+            margin-bottom: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+        .nav-items {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            font-size: 0.95rem;
+            color: #495057;
+        }
+        .nav-items span {
+            font-weight: 700;
+            color: #212529;
+        }
+        .top-nav a {
+            color: #6c757d;
+            text-decoration: none;
+        }
+        .top-nav a:hover {
+            color: #212529;
+        }
+        .top-nav form {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .top-nav .form-control {
+            width: 200px;
+            height: 34px;
+            border-radius: 6px;
+            border-color: #ced4da;
+        }
+        .top-nav .btn-search {
+            min-width: 82px;
+            height: 34px;
+            padding: 0 12px;
+            border-radius: 6px;
+        }
+        .hero-card {
+            position: relative;
+            background: #dee2e6;
+            border-radius: 20px;
+            overflow: hidden;
+            min-height: 340px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 28px;
+        }
+        .hero-card img {
+            width: 100%;
+            display: block;
+            opacity: 0.14;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: rgba(33, 37, 41, 0.84);
+            z-index: 1;
+            gap: 10px;
+        }
+        .hero-overlay h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        .hero-overlay p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #495057;
+        }
+        .hero-controls {
+            position: absolute;
+            inset: auto 24px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: calc(100% - 48px);
+            z-index: 1;
+        }
+        .hero-controls button {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255,255,255,0.95);
+            color: #495057;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(15, 23, 42, 0.08);
+        }
+        .hero-indicators {
+            position: absolute;
+            bottom: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 1;
+        }
+        .hero-indicators span {
+            width: 38px;
+            height: 3px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 2px;
+        }
+        .product-section {
+            margin-top: 10px;
+        }
+        .section-header {
+            margin-bottom: 18px;
+        }
+        .section-header h2 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .section-header p {
+            margin: 0;
+            color: #6c757d;
+            font-size: 0.95rem;
+        }
+        .product-card {
+            background: #ffffff;
+            border: 1px solid #dee2e6;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 12px 32px rgba(15, 23, 42, 0.07);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+        }
+        .product-card img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            background: #e9ecef;
+        }
+        .product-card-body {
+            padding: 18px;
+        }
+        .product-card-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .product-card-prices {
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            color: #6c757d;
+        }
+        .product-card-prices .old-price {
+            margin-right: 10px;
+            text-decoration: line-through;
+        }
+        .product-card-btn {
+            width: 100%;
+            border-radius: 10px;
+            padding: 10px 0;
+            font-weight: 600;
+        }
+        .badge-sale {
+            position: absolute;
+            top: 14px;
+            right: 0;
+            background: #ff7b15;
+            color: #fff;
+            padding: 8px 16px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border-radius: 0 0 0 12px;
+            transform: rotate(5deg);
+            box-shadow: 0 12px 24px rgba(255,123,21,0.22);
+        }
+        .conclusion {
+            margin-top: 34px;
+            padding-top: 10px;
+            color: #4b5563;
+            font-size: 0.96rem;
+        }
+        @media (max-width: 991px) {
+            .top-nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .top-nav form {
+                width: 100%;
+                justify-content: center;
+            }
+            .top-nav .form-control {
+                width: 100%;
+                max-width: 320px;
+            }
+            .hero-overlay h1 {
+                font-size: 3rem;
+            }
+        }
+        @media (max-width: 576px) {
+            .top-nav {
+                padding: 12px 14px;
+            }
+            .hero-overlay h1 {
+                font-size: 2.3rem;
+            }
+            .hero-controls {
+                inset: auto 12px 12px;
+                width: calc(100% - 24px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-page">
+        <div class="top-nav shadow-sm">
+            <div class="nav-items">
+                <span>Navbar</span>
+                <a href="#">Home</a>
+                <a href="#">Link</a>
+                <a href="#">Dropdown</a>
+            </div>
+            <form class="d-flex">
+                <input class="form-control form-control-sm" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-primary btn-search" type="submit">Search</button>
+            </form>
+        </div>
+
+        <div class="hero-card">
+            <img src="picture/Screenshot 2026-05-31 191634.png" alt="1920 x 530">
+            <div class="hero-overlay">
+                <h1>1920 x 530</h1>
+                <p>Responsive banner area using Bootstrap Grid</p>
+            </div>
+            <div class="hero-controls">
+                <button type="button">‹</button>
+                <button type="button">›</button>
+            </div>
+            <div class="hero-indicators">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <div class="product-section">
+            <div class="section-header">
+                <h2>NEW PRODUCT</h2>
+                <p>List product description</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-sm-6 col-lg-3">
+                    <div class="product-card position-relative">
+                        <img src="picture/Screenshot 2026-05-31 193327.png" alt="Product">
+                        <div class="product-card-body">
+                            <div class="product-card-title">Product</div>
+                            <div class="product-card-prices"><span class="old-price">100.000 vnd</span><span class="text-warning">80.000 vnd</span></div>
+                            <button class="btn btn-sm btn-primary product-card-btn">Xem chi tiết</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="product-card position-relative">
+                        <img src="picture/Screenshot 2026-05-31 193327.png" alt="Product">
+                        <div class="product-card-body">
+                            <div class="product-card-title">Product</div>
+                            <div class="product-card-prices"><span class="old-price">100.000 vnd</span><span class="text-warning">80.000 vnd</span></div>
+                            <button class="btn btn-sm btn-primary product-card-btn">Xem chi tiết</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="product-card position-relative">
+                        <img src="picture/Screenshot 2026-05-31 193327.png" alt="Product">
+                        <div class="product-card-body">
+                            <div class="product-card-title">Product</div>
+                            <div class="product-card-prices"><span class="old-price">100.000 vnd</span><span class="text-warning">80.000 vnd</span></div>
+                            <button class="btn btn-sm btn-primary product-card-btn">Xem chi tiết</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="product-card position-relative">
+                        <span class="badge-sale">Sale</span>
+                        <img src="picture/Screenshot 2026-05-31 193334.png" alt="Product">
+                        <div class="product-card-body">
+                            <div class="product-card-title">Product</div>
+                            <div class="product-card-prices"><span class="old-price">100.000 vnd</span><span class="text-warning">80.000 vnd</span></div>
+                            <button class="btn btn-sm btn-primary product-card-btn">Xem chi tiết</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="conclusion">
+            <h3 class="section-title">Conclusion</h3>
+            <p class="text-muted-small">After learning about Bootstrap Grid, you can build a responsive website layout.</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
