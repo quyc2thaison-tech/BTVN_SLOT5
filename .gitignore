@@ -1,0 +1,38 @@
+# Visual Studio and Build Files
+*.exe
+*.obj
+*.o
+*.dll
+*.lib
+*.a
+*.so
+*.dylib
+
+# IDE
+.vs/
+.vscode/
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+
+# Debug and Release
+Debug/
+Release/
+bin/
+obj/
+
+# Temp files
+*.tmp
+*.bak
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# C++ specific
+*.pch
+*.idb
+*.pdb
